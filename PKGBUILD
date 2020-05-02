@@ -12,8 +12,6 @@ amdgpu-core-meta
 amdgpu-pro-core-meta
 amf-amdgpu-pro
 hip-amdgpu-pro
-amdgpu-pro-libgl
-lib32-amdgpu-pro-libgl
 opencl-amdgpu-pro
 opencl-amdgpu-pro-comgr
 opencl-amdgpu-pro-dev
@@ -107,50 +105,6 @@ package_hip-amdgpu-pro () {
 
     extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/hip-amdgpu-pro_${major}-${minor}_amd64.deb
     move_copyright
-}
-
-package_amdgpu-pro-libgl () {
-    pkgdesc="AMDGPU Pro OpenGL driver"
-    license=('custom: AMDGPU-PRO EULA')
-    provides=('libgl')
-    depends=("amdgpu-pro-core-meta=${major}_${minor}-${pkgrel}" "gcc-libs" "glibc" "libx11" "libxcb" "libxdamage" "libxext" "libxfixes" "libxxf86vm")
-    backup=(etc/gbm/gbm.conf)
-
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libegl1-amdgpu-pro_${major}-${minor}_amd64.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libgl1-amdgpu-pro-appprofiles_${major}-${minor}_all.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libgl1-amdgpu-pro-dri_${major}-${minor}_amd64.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libgl1-amdgpu-pro-ext_${major}-${minor}_amd64.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libgl1-amdgpu-pro-ext-hwe_${major}-${minor}_amd64.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libgl1-amdgpu-pro-glx_${major}-${minor}_amd64.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libglapi1-amdgpu-pro_${major}-${minor}_amd64.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libgles2-amdgpu-pro_${major}-${minor}_amd64.deb
-    move_copyright
-
-    # extra_commands:
-    mv "${pkgdir}"/opt/amdgpu-pro/lib/xorg/modules/extensions/libglx-ext-hwe.so "${pkgdir}"/opt/amdgpu-pro/lib/xorg/modules/extensions/libglx.so
-}
-
-package_lib32-amdgpu-pro-libgl () {
-    pkgdesc="AMDGPU Pro OpenGL driver (32-bit)"
-    license=('custom: AMDGPU-PRO EULA')
-    provides=('lib32-libgl')
-    depends=("amdgpu-pro-core-meta=${major}_${minor}-${pkgrel}" "amdgpu-pro-libgl=${major}_${minor}-${pkgrel}" "lib32-gcc-libs" "lib32-glibc" "lib32-libx11" "lib32-libxcb" "lib32-libxdamage" "lib32-libxext" "lib32-libxfixes" "lib32-libxxf86vm")
-    backup=(etc/amd/amdrc etc/ld.so.conf.d/10-amdgpu-pro-i386.conf)
-
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libegl1-amdgpu-pro_${major}-${minor}_i386.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libgl1-amdgpu-pro-dri_${major}-${minor}_i386.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libgl1-amdgpu-pro-ext_${major}-${minor}_i386.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libgl1-amdgpu-pro-ext-hwe_${major}-${minor}_i386.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libgl1-amdgpu-pro-glx_${major}-${minor}_i386.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libglapi1-amdgpu-pro_${major}-${minor}_i386.deb
-    extract_deb "${srcdir}"/amdgpu-pro-${major}-${minor}-ubuntu-18.04/libgles2-amdgpu-pro_${major}-${minor}_i386.deb
-    move_copyright
-
-    # extra_commands:
-    mv "${pkgdir}"/opt/amdgpu-pro/lib/xorg/modules/extensions/libglx-ext-hwe.so "${pkgdir}"/opt/amdgpu-pro/lib/xorg/modules/extensions/libglx.so
-    rm "${pkgdir}"/etc/amd/amdrc "${pkgdir}"/opt/amdgpu-pro/lib/xorg/modules/extensions/libglx.so
-    # Double entry
-    rm "${pkgdir}"/opt/amdgpu/share/drirc.d/10-amdgpu-pro.conf
 }
 
 package_opencl-amdgpu-pro () {

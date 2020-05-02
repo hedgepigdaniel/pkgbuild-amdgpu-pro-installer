@@ -39,38 +39,6 @@ pkgname = hip-amdgpu-pro
 	depends = amdgpu-pro-core-meta=20.10_1048554-1
 	depends = glibc
 
-pkgname = amdgpu-pro-libgl
-	pkgdesc = AMDGPU Pro OpenGL driver
-	license = custom: AMDGPU-PRO EULA
-	depends = amdgpu-pro-core-meta=20.10_1048554-1
-	depends = gcc-libs
-	depends = glibc
-	depends = libx11
-	depends = libxcb
-	depends = libxdamage
-	depends = libxext
-	depends = libxfixes
-	depends = libxxf86vm
-	provides = libgl
-	backup = etc/gbm/gbm.conf
-
-pkgname = lib32-amdgpu-pro-libgl
-	pkgdesc = AMDGPU Pro OpenGL driver (32-bit)
-	license = custom: AMDGPU-PRO EULA
-	depends = amdgpu-pro-core-meta=20.10_1048554-1
-	depends = amdgpu-pro-libgl=20.10_1048554-1
-	depends = lib32-gcc-libs
-	depends = lib32-glibc
-	depends = lib32-libx11
-	depends = lib32-libxcb
-	depends = lib32-libxdamage
-	depends = lib32-libxext
-	depends = lib32-libxfixes
-	depends = lib32-libxxf86vm
-	provides = lib32-libgl
-	backup = etc/amd/amdrc
-	backup = etc/ld.so.conf.d/10-amdgpu-pro-i386.conf
-
 pkgname = opencl-amdgpu-pro
 	pkgdesc = Code object manager (COMGR)
 	license = custom: AMDGPU-PRO EULA
